@@ -8,7 +8,7 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 class NewsDetail extends StatelessWidget {
   NewsDetail({required this.news, super.key});
 
-  News news = News();
+  NewsData news = NewsData();
   @override
   Widget build(BuildContext context) {
     Size size =
@@ -20,9 +20,9 @@ class NewsDetail extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.green,
-        title: Text(news.headnews.toString(),
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Colors.white)),
+        title: SelectableText(news.headnews.toString(),
+            style: TextStyle(
+                color: Colors.white, overflow: TextOverflow.ellipsis)),
       ),
       body: SingleChildScrollView(
           child: Center(
@@ -33,15 +33,17 @@ class NewsDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image(
-                image: AssetImage(news.image!),
+                image: NetworkImage("assets/${news.headimage!}"),
                 fit: BoxFit.contain,
               ),
               spaceBox(20.0),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: HtmlWidget(
-                  news.detail.toString(),
-                  textStyle: MyAppStyle(def_fontsize: 16).normal(),
+                child: SelectionArea(
+                  child: HtmlWidget(
+                    news.content.toString(),
+                    textStyle: MyAppStyle(def_fontsize: 16).normal(),
+                  ),
                 ),
               ),
               spaceBox(20.0),
