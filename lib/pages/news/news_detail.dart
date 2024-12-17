@@ -66,7 +66,10 @@ class _NewsDetailState extends State<NewsDetail> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image(
-                image: NetworkImage(headimageurl),
+                image: NetworkImage(headimageurl, headers: {
+                  "Access-Control-Allow-Origin": "*",
+                  "Access-Control-Allow-Credentials": "true",
+                }),
                 fit: BoxFit.contain,
               ),
               spaceBox(20.0),
