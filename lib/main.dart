@@ -5,6 +5,20 @@ import 'package:flutter_otk/pages/welcome/firstpage.dart';
 
 enum statusOnline { online, offline }
 
+List nameMonth = [
+  "มกราคม",
+  "กุมภาพันธ์",
+  "มีนาคม",
+  "เมษายน",
+  "พฤษภาคม",
+  "มิถุนายน",
+  "กรกฏาคม",
+  "สิงหาคม",
+  "กันยายน",
+  "ตุลาคม",
+  "พฤศจิกายน",
+  "ธันวาคม"
+];
 void main() {
   runApp(MainApp());
 }

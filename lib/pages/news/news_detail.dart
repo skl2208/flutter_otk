@@ -1,14 +1,47 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_otk/1_constant/app_url.dart';
+import 'package:flutter_otk/controller/news_con.dart';
 import 'package:flutter_otk/model/news_model.dart';
 import 'package:flutter_otk/style/mystyle.dart';
+import 'package:flutter_otk/utilities/skutility.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
-class NewsDetail extends StatelessWidget {
-  NewsDetail({required this.news, super.key});
+class NewsDetail extends StatefulWidget {
+  NewsDetail({required this.id, super.key});
 
-  NewsData news = NewsData();
+  String id;
+
+  @override
+  State<NewsDetail> createState() => _NewsDetailState();
+}
+
+class _NewsDetailState extends State<NewsDetail> {
+  NewsModel newsData = NewsModel();
+  String headnews = "";
+  String headimageurl = "";
+  String content = "";
+  String createdate = "";
+
+  getInformation() async {
+    newsData = await NewsService.showNews(widget.id);
+    if (newsData.data != null) {
+      setState(() {
+        headnews = newsData.data!.first.headnews!;
+        headimageurl = newsData.data!.first.headimageurl!;
+        content = newsData.data!.first.content!;
+        createdate = newsData.data!.first.createdate!;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getInformation();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size =
@@ -20,7 +53,7 @@ class NewsDetail extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.green,
-        title: SelectableText(news.headnews.toString(),
+        title: SelectableText(headnews,
             style: TextStyle(
                 color: Colors.white, overflow: TextOverflow.ellipsis)),
       ),
@@ -33,7 +66,7 @@ class NewsDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image(
-                image: NetworkImage("assets/${news.headimage!}"),
+                image: NetworkImage(headimageurl),
                 fit: BoxFit.contain,
               ),
               spaceBox(20.0),
@@ -41,13 +74,14 @@ class NewsDetail extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: SelectionArea(
                   child: HtmlWidget(
-                    news.content.toString(),
+                    content,
                     textStyle: MyAppStyle(def_fontsize: 16).normal(),
                   ),
                 ),
               ),
               spaceBox(20.0),
-              Divider()
+              Divider(),
+              Text(MyUtil.convertToThaiDate(createdate))
             ],
           ),
         ),

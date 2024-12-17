@@ -41,4 +41,28 @@ class NewsService {
 
     return news;
   }
+
+  static Future<NewsModel> showNews(String id) async {
+    NewsModel newsData = NewsModel();
+
+    final url = "${WS.showNew}?id=$id";
+
+    try {
+      final response = await Dio().get(url,
+          options: Options(
+            responseType: ResponseType.json,
+            receiveTimeout: Duration(seconds: 30),
+          ));
+
+      if (response.statusCode == 200) {
+        newsData =
+            NewsModel.fromJson(jsonDecode(response.data)); // response.data;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("เกิด error $e");
+      }
+    }
+    return newsData;
+  }
 }

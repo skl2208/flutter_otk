@@ -35,6 +35,7 @@ class NewsModel {
 class NewsData {
   String? id;
   String? headnews;
+  String? title;
   String? headimageurl;
   String? headimage;
   String? createdate;
@@ -47,6 +48,7 @@ class NewsData {
   NewsData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     headnews = json['headnews'];
+    title = json['title'];
     headimageurl = json['headimageurl'];
     headimage = json['headimage'];
     createdate = json['createdate'];
@@ -58,6 +60,7 @@ class NewsData {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
     data['headnews'] = headnews;
+    data['title'] = title;
     data['headimageurl'] = headimageurl;
     data['headimage'] = headimage;
     data['createdate'] = createdate;

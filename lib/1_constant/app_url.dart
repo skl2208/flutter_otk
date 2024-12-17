@@ -7,4 +7,6 @@ class WS {
       "${AppConstant.baseUrl}adminotk/ws/greeting/showgreeting_ws.php";
   static const String showNews =
       "${AppConstant.baseUrl}adminotk/ws/news/showallnews_ws.php";
+  static const String showNew =
+      "${AppConstant.baseUrl}adminotk/ws/news/shownews_ws.php";
 }
