@@ -80,11 +80,23 @@ class _MainAppState extends State<MainApp> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SelectableText(welcome_en,
-                        style: MyAppStyle(def_fontsize: 30).title()),
-                    SelectableText(
-                      welcome_th,
-                      style: MyAppStyle(def_fontsize: 30).title(),
+                    SizedBox(
+                      width: screenWidth * 0.9,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: SelectableText(welcome_en,
+                            style: MyAppStyle(def_fontsize: 30).title()),
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenWidth * 0.9,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: SelectableText(
+                          welcome_th,
+                          style: MyAppStyle(def_fontsize: 30).title(),
+                        ),
+                      ),
                     ),
                     // Text("${screenWidth.toString()} Test"),
                     spaceBox(20.0),
