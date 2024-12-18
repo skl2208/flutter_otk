@@ -22,6 +22,8 @@ class _MainAppState extends State<MainApp> {
   String welcome_th = "";
   String welcome_en = "";
   NewsModel listNews = NewsModel();
+  CarouselSliderController carouselSliderController =
+      CarouselSliderController();
 
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -91,6 +93,34 @@ class _MainAppState extends State<MainApp> {
                 ),
               ),
             ),
+            Transform.translate(
+              offset: Offset(0, 280),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      carouselSliderController.nextPage();
+                    },
+                    child: Icon(
+                      Icons.chevron_left,
+                      size: 100,
+                      color: Colors.yellow.shade700,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      carouselSliderController.previousPage();
+                    },
+                    child: Icon(
+                      Icons.chevron_right,
+                      size: 100,
+                      color: Colors.yellow.shade700,
+                    ),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -104,6 +134,7 @@ class _MainAppState extends State<MainApp> {
         WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio;
     double screenWidth = size.width / d;
     return CarouselSlider(
+      carouselController: carouselSliderController,
       items: listNews.data!.map((e) {
         return Builder(builder: (BuildContext context) {
           return InkWell(
