@@ -63,11 +63,13 @@ class _NewsDetailState extends State<NewsDetail> {
           width: screenWidth > 450 ? screenWidth * 0.5 : screenWidth * 1.0,
           height: double.maxFinite,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image(
-                image: NetworkImage(headimageurl),
-                fit: BoxFit.contain,
+              Center(
+                child: Image(
+                  image: NetworkImage(headimageurl),
+                  fit: BoxFit.contain,
+                ),
               ),
               spaceBox(20.0),
               Padding(
@@ -81,7 +83,7 @@ class _NewsDetailState extends State<NewsDetail> {
               ),
               spaceBox(20.0),
               Divider(),
-              Text(MyUtil.convertToThaiDate(createdate))
+              Text("ล่าสุดเมื่อ:${MyUtil.convertToThaiDate(createdate)}")
             ],
           ),
         ),

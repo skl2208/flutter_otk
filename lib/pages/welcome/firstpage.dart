@@ -84,7 +84,7 @@ class _MainAppState extends State<MainApp> {
                       welcome_th,
                       style: MyAppStyle(def_fontsize: 30).title(),
                     ),
-                    Text("${screenWidth.toString()} Test"),
+                    // Text("${screenWidth.toString()} Test"),
                     spaceBox(20.0),
                     showNews(),
                   ],
@@ -142,7 +142,7 @@ class _MainAppState extends State<MainApp> {
                             style: MyAppStyle(def_fontsize: 16).title(),
                           ),
                           SelectableText(
-                            MyUtil.convertToThaiDate(e.createdate.toString()),
+                            "ล่าสุดเมื่อ: ${MyUtil.convertToThaiDate(e.createdate.toString())}",
                             maxLines: 1,
                             style: MyAppStyle(def_fontsize: 12).subtitle(),
                             textAlign: TextAlign.end,
