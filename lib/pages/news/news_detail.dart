@@ -72,27 +72,30 @@ class _NewsDetailState extends State<NewsDetail> {
         child: SizedBox(
           width: screenWidth > 450 ? screenWidth * 0.5 : screenWidth * 1.0,
           height: double.maxFinite,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image(
-                image: NetworkImage(headimageurl),
-                fit: BoxFit.contain,
-              ),
-              spaceBox(20.0),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: SelectionArea(
-                  child: HtmlWidget(
-                    content,
-                    textStyle: MyAppStyle(def_fontsize: 16).normal(),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image(
+                  image: NetworkImage(headimageurl),
+                  fit: BoxFit.contain,
+                ),
+                spaceBox(20.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  child: SelectionArea(
+                    child: HtmlWidget(
+                      content,
+                      textStyle: MyAppStyle(def_fontsize: 16).normal(),
+                    ),
                   ),
                 ),
-              ),
-              spaceBox(20.0),
-              Divider(),
-              Text("ล่าสุดเมื่อ:${MyUtil.convertToThaiDate(updatedate)}")
-            ],
+                spaceBox(20.0),
+                Divider(),
+                Text("ล่าสุดเมื่อ:${MyUtil.convertToThaiDate(updatedate)}")
+              ],
+            ),
           ),
         ),
       )),

@@ -14,10 +14,10 @@ class NewsService {
 
     switch (status) {
       case statusOnline.offline:
-        "${WS.showNews}?status=F";
+        "${WS.showNews}?status=F&limit=3";
         break;
       case statusOnline.online:
-        url = "${WS.showNews}?status=T";
+        url = "${WS.showNews}?status=T&limit=3";
         break;
       default:
         url = WS.showNews;
