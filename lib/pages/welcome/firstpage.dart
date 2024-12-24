@@ -65,74 +65,79 @@ class _MainAppState extends State<MainApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Stack(
+          alignment: AlignmentDirectional.topStart,
           children: [
             SizedBox(
-              width: double.maxFinite,
-              height: double.maxFinite,
+              width: screenWidth,
+              height: 200,
               child: Image(
-                fit: BoxFit.cover,
-                image: NetworkImage("assets/images/bg3.png"),
+                fit: BoxFit.fill,
+                image: AssetImage("images/bg4.png"),
               ),
             ),
-            Transform.translate(
-              offset: Offset(0, 120),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: screenWidth * 0.9,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: SelectableText(welcome_en,
-                            style: MyAppStyle(def_fontsize: 30).title()),
+            listNews.data!.isNotEmpty
+                ? Transform.translate(
+                    offset: Offset(0, 120),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.9,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: SelectableText(welcome_en,
+                                  style: MyAppStyle(def_fontsize: 30).title()),
+                            ),
+                          ),
+                          SizedBox(
+                            width: screenWidth * 0.9,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: SelectableText(
+                                welcome_th,
+                                style: MyAppStyle(def_fontsize: 30).title(),
+                              ),
+                            ),
+                          ),
+                          // Text("${screenWidth.toString()} Test"),
+                          spaceBox(20.0),
+                          showNews(),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      width: screenWidth * 0.9,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: SelectableText(
-                          welcome_th,
-                          style: MyAppStyle(def_fontsize: 30).title(),
-                        ),
-                      ),
-                    ),
-                    // Text("${screenWidth.toString()} Test"),
-                    spaceBox(20.0),
-                    showNews(),
-                  ],
-                ),
-              ),
-            ),
-            Transform.translate(
-              offset: Offset(0, 280),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      carouselSliderController.nextPage();
-                    },
-                    child: Icon(
-                      Icons.chevron_left,
-                      size: 100,
-                      color: Colors.yellow.shade700,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      carouselSliderController.previousPage();
-                    },
-                    child: Icon(
-                      Icons.chevron_right,
-                      size: 100,
-                      color: Colors.yellow.shade700,
                     ),
                   )
-                ],
-              ),
-            ),
+                : Container(),
+            listNews.data!.isNotEmpty
+                ? Transform.translate(
+                    offset: Offset(0, 280),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            carouselSliderController.nextPage();
+                          },
+                          child: Icon(
+                            Icons.chevron_left,
+                            size: 100,
+                            color: Colors.yellow.shade700,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            carouselSliderController.previousPage();
+                          },
+                          child: Icon(
+                            Icons.chevron_right,
+                            size: 100,
+                            color: Colors.yellow.shade700,
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),
@@ -162,17 +167,18 @@ class _MainAppState extends State<MainApp> {
                     elevation: 8,
                     shadowColor: Colors.grey.shade500,
                     child: SizedBox(
-                      width: screenWidth > 450 ? 380 : 200,
-                      height: screenWidth > 450 ? 200 : 130,
+                      width: screenWidth > 450 ? 500 : 200,
+                      height: screenWidth > 450 ? 280 : 130,
                       child: Image.network(
                         e.headimageurl!,
                         fit: BoxFit.fill,
+                        headers: {"Access-Control-Allow-Origin": "*"},
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: screenWidth > 450 ? 380 : 200,
-                    height: screenWidth > 450 ? 200 : 130,
+                    width: screenWidth > 450 ? 500 : 200,
+                    height: screenWidth > 450 ? 280 : 130,
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10.0),
                       child: Column(
@@ -185,7 +191,7 @@ class _MainAppState extends State<MainApp> {
                             style: MyAppStyle(def_fontsize: 16).title(),
                           ),
                           SelectableText(
-                            "ล่าสุดเมื่อ: ${MyUtil.convertToThaiDate(e.createdate.toString())}",
+                            "ล่าสุดเมื่อ: ${MyUtil.convertToThaiDate(e.updatedate.toString())}",
                             maxLines: 1,
                             style: MyAppStyle(def_fontsize: 12).subtitle(),
                             textAlign: TextAlign.end,
@@ -201,10 +207,9 @@ class _MainAppState extends State<MainApp> {
         });
       }).toList(),
       options: CarouselOptions(
+          initialPage: ((listNews.data!.length / 2) - 1).round(),
           height: screenWidth > 450 ? double.maxFinite : double.maxFinite,
-          viewportFraction: screenWidth > 450 ? 0.2 : 0.5,
-
-          // viewportFraction: 0.2,
+          viewportFraction: screenWidth > 450 ? 0.3 : 0.5,
           animateToClosest: false,
           pageSnapping: false,
           enableInfiniteScroll: false,

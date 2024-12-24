@@ -39,6 +39,7 @@ class NewsData {
   String? headimageurl;
   String? headimage;
   String? createdate;
+  String? updatedate;
   String? content;
   String? status;
 
@@ -51,6 +52,7 @@ class NewsData {
     title = json['title'];
     headimageurl = json['headimageurl'];
     headimage = json['headimage'];
+    updatedate = json['updatedate'];
     createdate = json['createdate'];
     content = json['content'];
     status = json['status'];
@@ -63,6 +65,7 @@ class NewsData {
     data['title'] = title;
     data['headimageurl'] = headimageurl;
     data['headimage'] = headimage;
+    data['updatedate'] = updatedate;
     data['createdate'] = createdate;
     data['content'] = content;
     data['status'] = status;

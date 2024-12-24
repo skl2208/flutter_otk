@@ -7,8 +7,10 @@ class MyUtil {
     final splitString = dateInput.split(" ");
     try {
       final part1 = splitString[0].split("-");
-      result =
-          "${part1[2]} ${nameMonth[int.parse(part1[1]) - 1]} ${int.parse(part1[0]) + 543}";
+      if (part1.length > 1) {
+        result =
+            "${part1[2]} ${nameMonth[int.parse(part1[1]) - 1]} ${int.parse(part1[0]) + 543}";
+      }
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());

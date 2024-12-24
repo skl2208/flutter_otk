@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter_otk/1_constant/app_url.dart';
 import 'package:flutter_otk/controller/news_con.dart';
 import 'package:flutter_otk/model/news_model.dart';
 import 'package:flutter_otk/style/mystyle.dart';
@@ -23,15 +22,21 @@ class _NewsDetailState extends State<NewsDetail> {
   String headimageurl = "";
   String content = "";
   String createdate = "";
+  String updatedate = "";
 
   getInformation() async {
     newsData = await NewsService.showNews(widget.id);
     if (newsData.data != null) {
+      print(headnews);
+      print(headimageurl);
+      print(content);
+
       setState(() {
         headnews = newsData.data!.first.headnews!;
         headimageurl = newsData.data!.first.headimageurl!;
         content = newsData.data!.first.content!;
         createdate = newsData.data!.first.createdate!;
+        updatedate = newsData.data!.first.updatedate!;
       });
     }
   }
@@ -53,9 +58,14 @@ class _NewsDetailState extends State<NewsDetail> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.green,
-        title: SelectableText(headnews,
-            style: TextStyle(
-                color: Colors.white, overflow: TextOverflow.ellipsis)),
+        title: SelectableText(
+          headnews,
+          style: TextStyle(
+            color: Colors.white,
+            overflow: TextOverflow.ellipsis,
+          ),
+          maxLines: 1,
+        ),
       ),
       body: SingleChildScrollView(
           child: Center(
@@ -81,7 +91,7 @@ class _NewsDetailState extends State<NewsDetail> {
               ),
               spaceBox(20.0),
               Divider(),
-              Text("ล่าสุดเมื่อ:${MyUtil.convertToThaiDate(createdate)}")
+              Text("ล่าสุดเมื่อ:${MyUtil.convertToThaiDate(updatedate)}")
             ],
           ),
         ),

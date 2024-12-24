@@ -45,7 +45,7 @@ class NewsService {
   static Future<NewsModel> showNews(String id) async {
     NewsModel newsData = NewsModel();
 
-    final url = "${WS.showNew}?id=$id";
+    final url = "${WS.showNewsDetail}?id=$id";
 
     try {
       final response = await Dio().get(url,
