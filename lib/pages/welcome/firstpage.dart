@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otk/controller/greeting_con.dart';
 import 'package:flutter_otk/controller/news_con.dart';
@@ -39,11 +40,14 @@ class _MainAppState extends State<MainApp> {
 
   getNews() async {
     var result2 = await NewsService.showAllNewsOnWeb(statusOnline.online);
-    if (result2.data!.isNotEmpty) {
-      setState(() {
-        listNews = result2;
-      });
+
+    if (kDebugMode) {
+      print(result2);
     }
+
+    setState(() {
+      listNews = result2;
+    });
   }
 
   @override
@@ -75,39 +79,37 @@ class _MainAppState extends State<MainApp> {
                 image: AssetImage("images/bg4.png"),
               ),
             ),
-            listNews.data!.isNotEmpty
-                ? Transform.translate(
-                    offset: Offset(0, 120),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: screenWidth * 0.9,
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: SelectableText(welcome_en,
-                                  style: MyAppStyle(def_fontsize: 30).title()),
-                            ),
-                          ),
-                          SizedBox(
-                            width: screenWidth * 0.9,
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: SelectableText(
-                                welcome_th,
-                                style: MyAppStyle(def_fontsize: 30).title(),
-                              ),
-                            ),
-                          ),
-                          // Text("${screenWidth.toString()} Test"),
-                          spaceBox(20.0),
-                          showNews(),
-                        ],
+            Transform.translate(
+              offset: Offset(0, 120),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: screenWidth * 0.9,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: SelectableText(welcome_en,
+                            style: MyAppStyle(def_fontsize: 30).title()),
                       ),
                     ),
-                  )
-                : Container(),
+                    SizedBox(
+                      width: screenWidth * 0.9,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: SelectableText(
+                          welcome_th,
+                          style: MyAppStyle(def_fontsize: 30).title(),
+                        ),
+                      ),
+                    ),
+                    // Text("${screenWidth.toString()} Test"),
+                    spaceBox(20.0),
+                    listNews.data!.isNotEmpty ? showNews() : Container(),
+                  ],
+                ),
+              ),
+            ),
             listNews.data!.isNotEmpty
                 ? Transform.translate(
                     offset: Offset(0, 280),

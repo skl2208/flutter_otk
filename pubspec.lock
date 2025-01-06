@@ -308,10 +308,10 @@ packages:
     dependency: transitive
     description:
       name: http_parser
-      sha256: "2aa08ce0341cc9b354a498388e30986515406668dbcc4f7c950c3e715496693b"
+      sha256: "178d74305e7866013777bab2c3d8726205dc5a4dd935297175b19a23a2e66571"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.2"
+    version: "4.1.2"
   just_audio:
     dependency: transitive
     description:
@@ -364,10 +364,10 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: "3315600f3fb3b135be672bf4a178c55f274bebe368325ae18462c89ac1e3b413"
+      sha256: c35bb79562d980e9a453fc715854e1ed39e24e7d0297a880ef54e17f9874a9d7
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.0"
+    version: "5.1.1"
   logging:
     dependency: transitive
     description:
@@ -585,10 +585,10 @@ packages:
     dependency: transitive
     description:
       name: sqflite_darwin
-      sha256: "96a698e2bc82bd770a4d6aab00b42396a7c63d9e33513a56945cbccb594c2474"
+      sha256: "22adfd9a2c7d634041e96d6241e6e1c8138ca6817018afc5d443fef91dcefa9c"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.1"
+    version: "2.4.1+1"
   sqflite_platform_interface:
     dependency: transitive
     description:
@@ -809,18 +809,18 @@ packages:
     dependency: transitive
     description:
       name: wakelock_plus
-      sha256: bf4ee6f17a2fa373ed3753ad0e602b7603f8c75af006d5b9bdade263928c0484
+      sha256: "36c88af0b930121941345306d259ec4cc4ecca3b151c02e3a9e71aede83c615e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.8"
+    version: "1.2.10"
   wakelock_plus_platform_interface:
     dependency: transitive
     description:
       name: wakelock_plus_platform_interface
-      sha256: "422d1cdbb448079a8a62a5a770b69baa489f8f7ca21aef47800c726d404f9d16"
+      sha256: "70e780bc99796e1db82fe764b1e7dcb89a86f1e5b3afb1db354de50f2e41eb7a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.2"
   web:
     dependency: transitive
     description:
@@ -865,10 +865,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "8b338d4486ab3fbc0ba0db9f9b4f5239b6697fcee427939a40e720cbb9ee0a69"
+      sha256: "154360849a56b7b67331c21f09a386562d88903f90a1099c5987afc1912e1f29"
       url: "https://pub.dev"
     source: hosted
-    version: "5.9.0"
+    version: "5.10.0"
   xdg_directories:
     dependency: transitive
     description:
@@ -886,5 +886,5 @@ packages:
     source: hosted
     version: "6.5.0"
 sdks:
-  dart: ">=3.5.4 <4.0.0"
+  dart: ">=3.6.0 <4.0.0"
   flutter: ">=3.24.0"

@@ -32,11 +32,11 @@ class _NewsDetailState extends State<NewsDetail> {
       print(content);
 
       setState(() {
-        headnews = newsData.data!.first.headnews!;
-        headimageurl = newsData.data!.first.headimageurl!;
-        content = newsData.data!.first.content!;
-        createdate = newsData.data!.first.createdate!;
-        updatedate = newsData.data!.first.updatedate!;
+        headnews = newsData.data!.first.headnews ?? "";
+        headimageurl = newsData.data!.first.headimageurl ?? "";
+        content = newsData.data!.first.content ?? "";
+        createdate = newsData.data!.first.createdate ?? "";
+        updatedate = newsData.data!.first.updatedate ?? "";
       });
     }
   }
