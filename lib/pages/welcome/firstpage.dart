@@ -23,6 +23,7 @@ class _MainAppState extends State<MainApp> {
   String welcome_th = "";
   String welcome_en = "";
   NewsModel listNews = NewsModel();
+  NewsModel listNews2 = NewsModel();
   CarouselSliderController carouselSliderController =
       CarouselSliderController();
 
@@ -68,79 +69,81 @@ class _MainAppState extends State<MainApp> {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Stack(
-          alignment: AlignmentDirectional.topStart,
-          children: [
-            SizedBox(
-              width: screenWidth,
-              height: 200,
-              child: Image(
-                fit: BoxFit.fill,
-                image: AssetImage("images/bg4.png"),
-              ),
-            ),
-            Transform.translate(
-              offset: Offset(0, 120),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: screenWidth * 0.9,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: SelectableText(welcome_en,
-                            style: MyAppStyle(def_fontsize: 30).title()),
-                      ),
-                    ),
-                    SizedBox(
-                      width: screenWidth * 0.9,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: SelectableText(
-                          welcome_th,
-                          style: MyAppStyle(def_fontsize: 30).title(),
-                        ),
-                      ),
-                    ),
-                    // Text("${screenWidth.toString()} Test"),
-                    spaceBox(20.0),
-                    listNews.data!.isNotEmpty ? showNews() : Container(),
-                  ],
+        body: SingleChildScrollView(
+          child: Stack(
+            alignment: AlignmentDirectional.topStart,
+            children: [
+              SizedBox(
+                width: screenWidth,
+                height: 200,
+                child: Image(
+                  fit: BoxFit.fill,
+                  image: AssetImage("images/bg4.png"),
                 ),
               ),
-            ),
-            listNews.data!.isNotEmpty
-                ? Transform.translate(
-                    offset: Offset(0, 280),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            carouselSliderController.nextPage();
-                          },
-                          child: Icon(
-                            Icons.chevron_left,
-                            size: 100,
-                            color: Colors.yellow.shade700,
+              Transform.translate(
+                offset: Offset(0, 120),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: screenWidth * 0.9,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: SelectableText(welcome_en,
+                              style: MyAppStyle(def_fontsize: 30).title()),
+                        ),
+                      ),
+                      SizedBox(
+                        width: screenWidth * 0.9,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: SelectableText(
+                            welcome_th,
+                            style: MyAppStyle(def_fontsize: 30).title(),
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            carouselSliderController.previousPage();
-                          },
-                          child: Icon(
-                            Icons.chevron_right,
-                            size: 100,
-                            color: Colors.yellow.shade700,
+                      ),
+                      // Text("${screenWidth.toString()} Test"),
+                      spaceBox(20.0),
+                      listNews.data!.isNotEmpty ? showNews() : Container(),
+                    ],
+                  ),
+                ),
+              ),
+              listNews.data!.isNotEmpty
+                  ? Transform.translate(
+                      offset: Offset(0, 280),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              carouselSliderController.nextPage();
+                            },
+                            child: Icon(
+                              Icons.chevron_left,
+                              size: 100,
+                              color: Colors.yellow.shade700,
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                  )
-                : Container(),
-          ],
+                          InkWell(
+                            onTap: () {
+                              carouselSliderController.previousPage();
+                            },
+                            child: Icon(
+                              Icons.chevron_right,
+                              size: 100,
+                              color: Colors.yellow.shade700,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  : Container(),
+            ],
+          ),
         ),
       ),
     );
@@ -215,6 +218,7 @@ class _MainAppState extends State<MainApp> {
           animateToClosest: false,
           pageSnapping: false,
           enableInfiniteScroll: false,
+          disableCenter: true,
           autoPlay: false),
     );
   }
