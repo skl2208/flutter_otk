@@ -1,8 +1,8 @@
 class AppConstant {
-  static const String baseUrl = "https://hotspot.starrycord.com";
-  // static const String baseUrl = "https://wifi.ortorkor.com/";
-  static const String subfolder = "${AppConstant.baseUrl}/";
-  // static const String subfolder = "${AppConstant.baseUrl}/welcome/";
+  // static const String baseUrl = "https://hotspot.starrycord.com";
+  static const String baseUrl = "https://wifi.ortorkor.com/";
+  // static const String subfolder = "${AppConstant.baseUrl}/";
+  static const String subfolder = "${AppConstant.baseUrl}/welcome/";
 }
 
 class WS {
